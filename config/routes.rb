@@ -7,16 +7,18 @@ Rails.application.routes.draw do
 
   
   get 'signup', to: 'users#new'
-  resources :users, only: [:index, :show, :create] do
+  resources :users, only: [:index, :show, :create, :new] do
     member do
       get :followings
       get :followers
     end
+  
     collection do
       get :search
     end
   end
-  resources :microposts, only: [:create, :destroy]
+  resources :microposts, only: [:destroy, :create]
   resources :relationships, only: [:create, :destroy]
+  resources :favorites, only: [:create, :destroy]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
