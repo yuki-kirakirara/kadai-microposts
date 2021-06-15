@@ -7,14 +7,18 @@ Rails.application.routes.draw do
 
   
   get 'signup', to: 'users#new'
-  resources :users, only: [:index, :show, :create, :new] do
+  resources :users, only: [:index, :show, :create,] do
     member do
       get :followings
       get :followers
-      get :likes
     end
     collection do
       get :search
+    end
+  end
+  resources :users, only: [:index, :show, :create,] do
+    member do
+      get :likes
     end
   end
   
